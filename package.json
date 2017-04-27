@@ -1,0 +1,25 @@
+{
+  "name": "d3-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tommo565/d3-tutorial.git"
+  },
+  "author": "Tom Ewing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tommo565/d3-tutorial/issues"
+  },
+  "homepage": "https://github.com/Tommo565/d3-tutorial#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.8.0",
+    "jquery": "^3.2.1",
+    "normalize.css": "^6.0.0"
+  }
+}
