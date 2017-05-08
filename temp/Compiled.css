@@ -435,3 +435,24 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
+div.bar {
+	display: inline-block;
+	width: 20px;
+	height: 75px; 
+	background-color: pink;
+	margin-right: 2px;
+}
+
+.axis path,
+
+.axis line {
+ fill: none;
+ stroke: black;
+ shape-rendering: crispEdges;
+}
+
+.axis text {
+ font-family: sans-serif;
+ font-size: 11px;
+}

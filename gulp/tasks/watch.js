@@ -38,7 +38,7 @@ gulp.task('watch', function () {                                    // Gulp-watc
 
 gulp.task('cssInject', ['styles'], function () {                    // 2nd arg is a dependency that will run beforehand 
 
-    return gulp.src('./temp/styles.css')
+    return gulp.src('./temp/Compiled.css')
         .pipe(browserSync.stream());                                // .stream injects css into the browser
 
 });

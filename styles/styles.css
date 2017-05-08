@@ -2,3 +2,5 @@
 @import "base/_variables";
 @import "base/_mixins";
 @import "base/_global";
+@import "modules/bar";
+@import "modules/axis";

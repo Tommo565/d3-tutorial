@@ -27025,20 +27025,19 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/* WEBPACK VAR INJECTION */(function($) {$( document ).ready(function() {
-	$("Myheader").append(" Success!");
-});
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
 var dataset = [ 5, 10, 15, 20, 25, 30, 35 ];
-console.log(dataset);
+
+
+
 
 /***/ }),
 /* 5 */
@@ -29478,9 +29477,10 @@ console.log(dataset);
 
 // Libraries
 
+var d3 = __webpack_require__(2);
 var jquery = __webpack_require__(0);
 var bootstrap = __webpack_require__(1);
-var d3 = __webpack_require__(2);
+
 
 // Custom stuff
 
