@@ -83,7 +83,7 @@ d3.csv("../data/sales.csv", function(error, data) {
                     .style("left", xPosition + "px")
                     .style("top", yPosition + "px")
                     .select("#value")
-                    .text(d);
+                    .text(d.sales);
 
                 // Showing the tooltip
 
