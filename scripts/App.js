@@ -4,7 +4,7 @@ var d3 = require('d3');
 var jquery = require('jquery');
 var bootstrap = require('bootstrap');
 
-// Custom stuff
+// Custom Libraries
 
-var data = require ('./modules/data');
-var custom = require('./modules/custom');
+var chart1 = require('./modules/d3-components/chart1');
+
