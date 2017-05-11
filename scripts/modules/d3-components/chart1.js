@@ -46,6 +46,13 @@ d3.csv("../data/sales.csv", function(error, data) {
               .domain([0, d3.max(sales)])  // Setting the domain (data)
               .nice();                     // Puts nice numbers on the scale (10,20,30,40...)
 
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+// Creating the axes
+
+
+
 // Creating the Bars
 
     chart1.selectAll("rect")                    // Selecting the (uncreated) bars
@@ -66,13 +73,12 @@ d3.csv("../data/sales.csv", function(error, data) {
 
 // Render the axes
 
-    chart1.append("g")                                                      // Append a new group
-        .attr("transform", "translate(0," + height + ")")                   //  
-        .call(d3.axisBottom(xScale));                                       // Rendering the axis
+    chart1.append("g")                                      // Append a new group
+        .attr("transform", "translate(0," + height + ")")   // Moving the x Axis to the bottom
+        .call(xAxis);                                       // Rendering the axis
 
-    chart1.append("g")                                                      // Append a new group
-        .call(d3.axisLeft(yScale));                                         // Rendering the axis
-
+    chart1.append("g")                                      // Append a new group
+        .call(yAxis);                                       // Rendering the axis
 
 // Interactivity
 
@@ -85,7 +91,7 @@ d3.csv("../data/sales.csv", function(error, data) {
             d3.select(this)                         // Select the rect being hovered over
               .transition()                         // Enable a transition effect
               .duration(500)                        // Set the duration of the transition effect
-              .attr("fill", "orange");              // Setting the fill coloue
+              .attr("fill", "orange");              // Setting the fill colour
 
             // Creating the tooltip
 
