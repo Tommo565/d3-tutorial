@@ -27065,86 +27065,90 @@ d3.csv("../data/sales.csv", function(error, data) {
 
 // Creating the scales
 
-    var x = d3.scaleBand()                                                  // Creating an Ordinal Scale
-              .rangeRound([0, width])                                       // Setting the range
-              .padding(0.2)                                                 // Sets the padding in between the bars
-              .domain(names);                                               // Setting the domain (array of x values)
+    var xScale = d3.scaleBand()            // Creating an Ordinal Scale
+              .rangeRound([0, width])      // Setting the range
+              .padding(0.2)                // Sets the padding in between the bars
+              .domain(names);              // Setting the domain (array of x values)
 
-    var y = d3.scaleLinear()                                                // Creating a Linear Scale 
-              .rangeRound([height, 0])                                      // Setting the range (pixels)
-              .domain([0, d3.max(sales)])                                   // Setting the domain (data)
-              .nice();                                                      // Puts nice numbers on the scale (10,20,30,40...)
+    var yScale = d3.scaleLinear()          // Creating a Linear Scale 
+              .rangeRound([height, 0])     // Setting the range (pixels)
+              .domain([0, d3.max(sales)])  // Setting the domain (data)
+              .nice();                     // Puts nice numbers on the scale (10,20,30,40...)
 
 // Creating the Bars
 
-    chart1.selectAll("rect")                                                // Selecting the (uncreated) bars
-            .data(data)                                                     // Appending the data to the selection
-            .enter()                                                        // Creates a new empty bar for each item in the data
-            .append("rect")                                                 // Appends an actual bar to the empty bar
-            .attr("x", function(d) { 
-                return x(d.salesperson);                                    // Horizontal positioning of the bar
-            })            
-            .attr("width", x.bandwidth())                                   // Dynamically sizes the bar width / padding with our x variable
-            .attr("y", function(d) {
-                return y(d.sales);                                          // Dynamically sizes the bar height / padding with our y variable
-            })
-            .attr("height", function(d) {
-                return height - y(d.sales);                                 // Binding data to the height of the bar
-            })
-            .attr("fill","steelblue")                                       // Adding colour 
-            .on("mouseover", function (d) {                                 // Adding mouseover interactivity
-
-                // Set the position of the tooltip
-
-                var xPosition = parseFloat(d3.select(this).attr("x")) + x.bandwidth() / 2;
-                var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
-
-                // Filling the bar orange on hover
-
-                d3.select(this)
-                  .transition()
-                  .duration(500)
-                  .attr("fill", "orange");
-
-                // Creating the tooltip
-
-                d3.select("#tooltip")
-                    .style("left", xPosition + "px")
-                    .style("top", yPosition + "px")
-                    .select("#value")
-                    .text(d.sales);
-
-                // Showing the tooltip
-
-                d3.select("#tooltip")
-                    .classed("hidden", false);
-            })
-            .on("mouseout", function () {                                   // Adding mouseout interactivity
-
-                // Returning the bars to normal
-
-                d3.select(this)
-                  .transition()
-                  .duration(250)
-                  .attr("fill", "steelblue");
-
-                // Hiding the tooltip
-
-                d3.select("#tooltip").classed("hidden", true);
-
-            });
-
+    chart1.selectAll("rect")                    // Selecting the (uncreated) bars
+        .data(data)                             // Appending the data to the selection
+        .enter()                                // Creates a new empty bar for each item in the data
+        .append("rect")                         // Appends an actual bar to the empty bar
+        .attr("x", function(d) { 
+            return xScale(d.salesperson);       // Horizontal positioning of the bar
+        })            
+        .attr("width", xScale.bandwidth())      // Dynamically sizes the bar width / padding with our x variable
+        .attr("y", function(d) {
+            return yScale(d.sales);             // Dynamically sizes the bar height / padding with our y variable
+        })
+        .attr("height", function(d) {
+            return height - yScale(d.sales);    // Binding data to the height of the bar
+        })
+        .attr("fill","steelblue");              // Adding colour
 
 // Render the axes
 
     chart1.append("g")                                                      // Append a new group
         .attr("transform", "translate(0," + height + ")")                   //  
-        .call(d3.axisBottom(x));                                            // Rendering the axis
+        .call(d3.axisBottom(xScale));                                       // Rendering the axis
 
     chart1.append("g")                                                      // Append a new group
-        .call(d3.axisLeft(y));                                              // Rendering the axis
+        .call(d3.axisLeft(yScale));                                         // Rendering the axis
 
-});
+
+// Interactivity
+
+    chart1.selectAll("rect")
+        .on("mouseover", function (d) { 
+
+            var xPosition = parseFloat(d3.select(this).attr("x"))  ;        // x position of the tooltip
+            var yPosition = parseFloat(d3.select(this).attr("y")) - 10;     // y position of the tooltip
+
+            d3.select(this)                         // Select the rect being hovered over
+              .transition()                         // Enable a transition effect
+              .duration(500)                        // Set the duration of the transition effect
+              .attr("fill", "orange");              // Setting the fill coloue
+
+            // Creating the tooltip
+
+            d3.select("#tooltip")                   // Selecting the tooltip div
+                .style("left", xPosition + "px")    // Setting the x position of the tooltip
+                .style("top", yPosition + "px")     // Setting the y position of the tooltip
+                .select("#value")                   // Selecting the span value
+                .text(d.sales);                     // Appending the data value to the tooltip
+
+            // Showing the tooltip
+
+            d3.select("#tooltip")
+                .classed("hidden", false);          // Unhide the tooltip
+        })
+
+        .on("mouseout", function () {                                   
+
+            // Returning the bars to normal
+
+            d3.select(this)                         // Select the rect being left
+                .transition()                         // Enable a transition effect
+                .duration(250)                        // Set the duration of the transition effect
+                .attr("fill", "steelblue");           // Returning the fill to normal
+
+            // Hiding the tooltip
+
+            d3.select("#tooltip")                   // Selecting the tooltip div
+                .classed("hidden", true);           // Hide the tooltip
+
+        });
+
+}); // End of function!
+
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),

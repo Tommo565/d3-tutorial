@@ -24,6 +24,7 @@
     "gulp-rename": "^1.2.2",
     "jquery": "^3.2.1",
     "normalize.css": "^6.0.0",
+    "pyrsmk-w": "^1.7.0",
     "webpack": "^2.5.1"
   },
   "devDependencies": {
